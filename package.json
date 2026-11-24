@@ -1,0 +1,1 @@
+{"name":"swarmx-pso","version":"1.0.0","description":"Interactive Particle Swarm Optimization studio","scripts":{"test":"node tests/engine.test.js"},"license":"MIT"}

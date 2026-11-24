@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>SwarmX – Interactive PSO Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<header><h1>SwarmX<small>Explore. Optimize. Visualize.</small></h1>
+<nav id="nav"></nav><button id="th">Light / dark</button></header>
+<main>
+<section class="tab on" id="t-sim"><div class="g">
+ <div class="c"><h3>Problem and parameters</h3>
+  <label>Function<select id="fn"></select></label><div class="mu" id="fi"></div>
+  <label>Preset<select id="ps"><option>Balanced</option><option>Exploration</option><option>Exploitation</option><option>Fast convergence</option><option>Custom</option></select></label>
+  <label>Objective<select id="ob"><option value="1">Minimize</option><option value="-1">Maximize</option></select></label>
+  <div id="pc"></div>
+  <div class="row"><button class="pri" id="rs">Apply and reset</button><button id="rn">Restart, new seed</button></div>
+  <p class="mu">Changed parameters take effect when you apply and reset; past iterations are never rewritten. Higher w favors exploration, lower w favors local search, c1 weights each particle’s own memory, c2 weights the swarm’s best. No setting guarantees convergence.</p></div>
+ <div class="c"><div class="row"><button class="pri" id="pl">Play</button><button id="pa">Pause</button><button id="pv">Previous</button><button id="nx">Next</button><button id="rs2">Reset</button><button id="csv">CSV</button></div>
+  <label>Speed: <span id="spv"></span> iterations/s<input type="range" id="sp" min="1" max="60" value="8"></label>
+  <canvas id="cv"></canvas><div class="mu" id="lg">Particles ● (selected = ringed) · personal bests ▫ · global best ★ · known optimum ◇ · arrows = velocity · wheel zoom, drag pan, hover for coordinates</div></div>
+ <div class="c"><h3>Swarm statistics</h3><div class="st" id="stt"></div>
+  <h3 style="margin-top:10px">Fitness (log₁₀ scale): <span style="color:var(--gb)">global best</span>, <span style="color:var(--ac)">average</span>, <span style="color:var(--ok)">current best</span></h3><canvas class="ch" id="c1"></canvas>
+  <h3 style="margin-top:10px">Swarm diversity</h3><canvas class="ch" id="c2"></canvas></div>
+</div>
+<div class="two" style="margin-top:12px"><div class="c"><h3>Particles (click to select)</h3><div class="sc"><table id="tb"></table></div></div>
+<div class="c"><h3>Calculation for selected particle</h3><pre id="cp"></pre></div></div></section>
+
+<section class="tab" id="t-learn"><div class="c"><div class="row"><button id="lb" class="on">Beginner</button><button id="le">Expert</button><button id="lp1">Previous step</button><button id="ln" class="pri">Next step</button><button id="li">Next iteration</button><span>Particle <select id="lps"></select></span></div><div class="mu" id="lh"></div><pre id="lo" style="margin-top:10px"></pre></div></section>
+<section class="tab" id="t-track"><div class="two"><div class="c"><h3>Trajectory of the selected particle</h3><canvas id="ct" style="aspect-ratio:1"></canvas><div class="mu">Green = start, white = current position, gold star = current global best.</div></div><div class="c"><div class="row"><span>Particle <select id="tps"></select></span><button id="tcsv">Export CSV</button></div><div class="sc" style="max-height:520px"><table id="tt"></table></div></div></div></section>
+<section class="tab" id="t-out"><div class="two"><div class="c"><h3>Learning outcomes</h3><div id="oc"></div><div class="bar"><i id="ob2"></i></div><div class="mu" id="op"></div></div><div class="c"><h3>Knowledge check</h3><div id="qz"></div></div></div><div class="c" style="margin-top:12px"><h3>20-seed success-rate challenge</h3><p class="mu">Runs the setup currently applied in the Simulator (function and parameters, always minimizing) over 20 different seeds with the real engine. A run succeeds when the global best reaches 1e-3 or better within the iteration limit. Try tuning w, c1 and c2 so that Rastrigin succeeds in at least half the runs.</p><div class="row"><button class="pri" id="ch">Run the challenge</button></div><pre id="cho"></pre></div></section>
+<section class="tab" id="t-saved"><div class="c"><h3>Saved experiments</h3><div class="row"><input id="sn" placeholder="Name this run"><button class="pri" id="sv">Save current setup</button></div><p class="mu">A saved run stores the function, objective and parameters including the seed. Because the engine is seeded, Replay reproduces the same run exactly. Saves live in this browser only.</p><div id="sl"></div></div></section>
+<section class="tab" id="t-hand"><div class="two"><div class="c"><h3>Verify PSO with hand calculation</h3>
+ <p class="mu">Two particles, two dimensions, Sphere function, fixed r1 and r2. The hand calculation below uses plain formulas written separately from the engine, and the result is compared with the real engine step.</p>
+ <div id="hf"></div><div class="row"><button class="pri" id="hc">Calculate and compare</button><button id="hx">Load textbook example</button></div></div>
+ <div class="c"><pre id="ho"></pre></div></div></section>
+
+<section class="tab" id="t-cmp"><div class="c"><h3>Compare two configurations</h3>
+ <p class="mu">Uses the function, particle count, iterations and seed from the simulator panel. Both runs use the same seed.</p>
+ <div class="two"><div>Experiment A<div class="row"><input id="aw" type="number" step=".05" value=".9" title="w"><input id="a1" type="number" step=".1" value="2" title="c1"><input id="a2" type="number" step=".1" value="2" title="c2"></div></div>
+ <div>Experiment B<div class="row"><input id="bw" type="number" step=".05" value=".4" title="w"><input id="b1" type="number" step=".1" value="2" title="c1"><input id="b2" type="number" step=".1" value="2" title="c2"></div></div></div>
+ <div class="mu">Fields in order: w, c1, c2.</div><div class="row"><button class="pri" id="cr">Run both</button><button id="cx">Export CSV</button></div>
+ <canvas class="ch" id="c3" style="height:220px"></canvas><pre id="co" style="margin-top:8px"></pre></div></section>
+
+<section class="tab" id="t-3d"><div class="c"><h3>3D landscape (drag to rotate, scroll to zoom)</h3><div id="p3" style="height:560px"></div><div class="mu" id="p3m"></div></div></section>
+
+<section class="tab" id="t-th"><div class="two"><div class="c"><h3>PSO in one page</h3><pre>Each particle i has a position x and a velocity v. It remembers its personal best pBest, and the swarm shares one global best gBest.
+
+v(t+1) = w·v(t) + c1·r1·(pBest − x) + c2·r2·(gBest − x)
+x(t+1) = x(t) + v(t+1)
+
+w is inertia, c1 is the cognitive (own memory) pull, c2 is the social (swarm) pull, and r1, r2 are fresh random numbers in [0,1] for every dimension.
+
+Pseudocode
+1. Scatter N particles in the search space with random velocities.
+2. Evaluate every particle; set pBest = position; set gBest to the best.
+3. Repeat until the iteration limit: for each particle, compute the new velocity, clamp it to ±vmax, move, clamp the position to the bounds (velocity in that dimension is set to 0), evaluate, update pBest if better. Then update gBest from the pBests.
+
+This tool uses synchronous gBest: all particles in an iteration see the same gBest from the end of the previous iteration.</pre></div>
+<div class="c"><h3>Notes</h3><pre>Cost: O(N·T) function evaluations; memory O(N·d).
+Strengths: few parameters, no gradients, easy to implement.
+Weaknesses: can stall in local minima (try Rastrigin), parameter sensitive, no convergence guarantee.
+Versus Genetic Algorithm: PSO keeps every individual and steers it with memory; a GA selects, crosses over and mutates.
+Versus Artificial Bee Colony: ABC uses employed, onlooker and scout bees with greedy neighbour search; PSO uses velocity with momentum.
+Variants: constriction-factor PSO, linearly decreasing inertia, local-best (ring topology), adaptive PSO.
+Applications: neural-network training, tuning controllers, scheduling, feature selection.</pre></div></div></section>
+</main><div id="tip"></div><div id="toast" role="status"></div>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script></body></html>
