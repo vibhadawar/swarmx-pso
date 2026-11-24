@@ -185,13 +185,6 @@ An internet connection is required for the external web font and Plotly.js used 
 
 ## Deployment
 
-The project can be deployed as a static website.
-
-**Netlify**
-1. Open [Netlify Drop](https://app.netlify.com/drop).
-2. Drag and drop the project folder.
-3. Netlify will generate a live deployment link.
-
 **Vercel**
 1. Import the GitHub repository.
 2. Select **Other** as the framework preset.
@@ -203,6 +196,9 @@ The project can be deployed as a static website.
 2. Go to Pages.
 3. Select deployment from the main branch.
 4. Choose the root folder and save.
+
+**Google Drive Link**
+https://drive.google.com/file/d/1ftAYP-cD6puM3RniHHq4wBfqXKCcqaIA/view?usp=sharing
 
 ## Screenshots
 
