@@ -66,7 +66,7 @@ function cmp(){const cfg=(a,b,c)=>({...draft,fn:$('fn').value,sgn:+$('ob').value
 function dl(name,txt){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv'}));a.download=name;a.click()}
 // ---------- 3D ----------
 let plotly=null;
-function plot3(full){if(!window.Plotly){if(!plotly){plotly=1;const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js';s.onload=()=>plot3(true);s.onerror=()=>{$('p3m').textContent='Plotly could not load; check your connection.'};document.head.appendChild(s)}return}
+function plot3(full){if(!window.Plotly){if(!plotly){plotly=1;const s=document.createElement('script');s.src='https://cdn.plot.ly/plotly-2.35.2.min.js';s.onload=()=>plot3(true);s.onerror=()=>{$('p3m').textContent='Plotly could not load; check your connection.'};document.head.appendChild(s)}return}
  const f=FN[P.fn],N=60,xs=[],ys=[];for(let i=0;i<N;i++){xs.push(P.lo+i/(N-1)*(P.hi-P.lo));ys.push(P.lo+i/(N-1)*(P.hi-P.lo))}
  const S=H[idx],t=[{type:'surface',x:xs,y:ys,z:ys.map(y=>xs.map(x=>f.f(x,y))),colorscale:'Plasma',opacity:.9,showscale:false},
  {type:'scatter3d',mode:'markers',x:S.parts.map(p=>p.x[0]),y:S.parts.map(p=>p.x[1]),z:S.parts.map(p=>p.f),marker:{size:4,color:'#ff4d6d'},name:'particles'},
