@@ -4,7 +4,6 @@ An interactive tool for learning and experimenting with **Particle Swarm Optimiz
 
 **Live Demo:** https://swarmx-pso-us33.vercel.app/
 
-**Demo Video:** [Add your video link here]
 
 ## About the Project
 
