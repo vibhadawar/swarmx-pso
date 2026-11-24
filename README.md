@@ -3,6 +3,7 @@
 An interactive tool for learning and experimenting with **Particle Swarm Optimization (PSO)**. Change the algorithm's parameters, run different optimization problems, and see how particles move towards the best solution at each iteration.
 
 **Live Demo:** https://swarmx-pso-us33.vercel.app/
+
 **Demo Video:** [Add your video link here]
 
 ## About the Project
@@ -159,8 +160,15 @@ The project is built using vanilla HTML, CSS, and JavaScript. No frontend framew
 ```text
 SwarmX/
 │
-├── index.html    # Complete application
-└── README.md     # Project documentation
+├── index.html          # Main HTML application
+├── style.css           # Styling and responsive layout
+├── app.js              # Application logic and PSO visualization
+├── engine.js           # PSO algorithm implementation
+├── engine.test.js      # Unit tests for the PSO engine
+├── package.json        # Project dependencies and scripts
+├── .gitignore          # Git ignored files configuration
+├── README.md           # Project documentation
+└── swarmx-pso-repo.zip # Project archive
 ```
 
 The PSO engine functions (`init`, `step`, and `run`) are kept separate from the DOM-related code, making the algorithm easier to understand and test independently.
