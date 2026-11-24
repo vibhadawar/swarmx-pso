@@ -2,7 +2,7 @@
 
 An interactive tool for learning and experimenting with **Particle Swarm Optimization (PSO)**. Change the algorithm's parameters, run different optimization problems, and see how particles move towards the best solution at each iteration.
 
-**Live Demo:** [Add your Netlify link here]  
+**Live Demo:** https://swarmx-pso-us33.vercel.app/
 **Demo Video:** [Add your video link here]
 
 ## About the Project
